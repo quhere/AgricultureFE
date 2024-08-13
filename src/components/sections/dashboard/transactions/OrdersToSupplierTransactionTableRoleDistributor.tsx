@@ -183,7 +183,7 @@ export const orderColumns: GridColDef<FlattenOrderData>[] = [
           queryClient.invalidateQueries({
             queryKey: ['ordersSupplier'],
           });
-          toast.success(`Reject Order ${params.row.id} successful!`);
+          toast.success(`Receive Order ${params.row.id} successful!`);
         },
       });
 

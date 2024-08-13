@@ -1,5 +1,5 @@
 import { Box, LinearProgress } from '@mui/material';
-import { DataGrid, GridApi, GridColDef, GridSlots, useGridApiRef } from '@mui/x-data-grid';
+import { DataGrid, GridApi, GridColDef, GridEventListener, GridSlots, useGridApiRef } from '@mui/x-data-grid';
 import { useQuery } from '@tanstack/react-query';
 import CustomDataGridFooter from 'components/common/table/CustomDataGridFooter';
 import CustomDataGridProductHeader from 'components/common/table/CustomDataGridProductHeaderRoleDSup';
@@ -8,6 +8,7 @@ import { ProductType, UserProfile } from 'data/dashboard/table';
 import dayjs from 'dayjs';
 import { ChangeEvent, useEffect, useState } from 'react';
 import SimpleBar from 'simplebar-react';
+import ProducInDetailModalRoleSupplier from '../modal/modalProductDetailRoleSupplier';
 
 const fetchProducts = async (userId: number): Promise<ProductType[]> =>
   await fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/suppliers/products/${userId}`).then(
@@ -19,11 +20,12 @@ const fetchProducts = async (userId: number): Promise<ProductType[]> =>
 export const topProductsColumns: GridColDef<ProductType>[] = [
   { field: 'productId', headerName: 'ProductID', maxWidth: 100 },
   { field: 'productName', headerName: 'Name Product', width: 100 },
-
+  { field: 'quantity', headerName: 'Quantity', width: 100 },
   { field: 'characteristic', headerName: 'Characteristic', width: 100 },
   { field: 'seed', headerName: 'Seed', width: 100 },
   { field: 'cook', headerName: 'Cook', width: 100 },
   { field: 'note', headerName: 'Note', width: 100 },
+
   {
     field: 'plantingDate',
     headerName: 'Planting Date',
@@ -44,7 +46,8 @@ const ProductsOfSupplierTable = () => {
   const [searchText, setSearchText] = useState('');
   const apiRef = useGridApiRef<GridApi>();
   const [user, setUser] = useState<UserProfile | null>(null);
-
+  const [selectedData, setSelectedData] = useState<ProductType | null>(null);
+  const [openProducInWarehouseDetailModal, setOpenProducInWarehouseDetailModal] = useState(false);
   const { data: productsData, isSuccess } = useQuery<ProductType[]>({
     queryKey: ['productsSupplier'],
     queryFn: () => fetchProducts(user!.id),
@@ -79,7 +82,15 @@ const ProductsOfSupplierTable = () => {
       apiRef.current.setRows(productsData);
     }
   };
+  const handleOpenOrderDetailModal = (value: ProductType) => {
+    setSelectedData(value);
+    setOpenProducInWarehouseDetailModal(true);
+  };
+  const handleClose = () => setOpenProducInWarehouseDetailModal(false);
 
+  const handleRowClick: GridEventListener<'rowClick'> = (params) => {
+    handleOpenOrderDetailModal(params.row);
+  };
   return (
     <Box
       sx={{
@@ -92,6 +103,7 @@ const ProductsOfSupplierTable = () => {
     >
       <SimpleBar>
         <DataGrid
+          onRowClick={handleRowClick}
           getRowId={(row) => row.productId}
           onResize={() => {
             apiRef.current.autosizeColumns({
@@ -139,6 +151,13 @@ const ProductsOfSupplierTable = () => {
             width: 1,
           }}
         />
+        {openProducInWarehouseDetailModal && (
+          <ProducInDetailModalRoleSupplier
+            open={openProducInWarehouseDetailModal}
+            onClose={handleClose}
+            data={selectedData}
+          />
+        )}
       </SimpleBar>
     </Box>
   );

@@ -121,7 +121,22 @@ export default function ProducInWarehouseDetailModalRoleSeller(props: Props) {
           <Typography id="modal-modal-description" sx={{ mt: 1 }}>
             Trạng thái hoạt động: {data?.distributorStatus}
           </Typography>
-
+          <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+            Mã số thuế: {data?.distributorTaxCode}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+            Ngày thành lập: {data?.distributorEstablishment}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+            Được quản lý bởi: {data?.distributorManager}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+            Trạng thái hoạt động: {data?.distributorActivated}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+            Mô tả công ty: {data?.distributorDescription}
+          </Typography>
+          
           <Typography id="modal-modal-title" variant="h2" component="h2">
             Chi tiết nhà cung cấp
           </Typography>

@@ -21,11 +21,11 @@ const ProductsPage = () => {
           pb: 1,
         }}
       >
-        <Grid container spacing={3} mb={3}>
-          <Grid item xl={12}>
+        <Grid container spacing={3} mb={3} columns={1}>
+          <Grid item xs={1}>
             <ProductsOfDistributorTable />
           </Grid>
-          <Grid item xl={12}>
+          <Grid item xs={1}>
             <AllProductsOfAllSuppliers />
           </Grid>
         </Grid>
@@ -38,12 +38,16 @@ const ProductsPage = () => {
           pb: 1,
         }}
       >
-        <Grid container spacing={3} mb={3}>
-          <Grid item xl={12}>
+        <Grid container spacing={3} mb={3} columns={1}>
+          <Grid item xs={1}>
             <ProductsOfSellerTable />
+            {/* <AllProductsOfAllDistributor /> */}
+
           </Grid>
-          <Grid item xl={12}>
+          <Grid item xs={1}>
+            {/* <ProductsOfSellerTable /> */}
             <AllProductsOfAllDistributor />
+
           </Grid>
         </Grid>
       </Box>
@@ -56,8 +60,8 @@ const ProductsPage = () => {
           pb: 1,
         }}
       >
-        <Grid container spacing={3} mb={3}>
-          <Grid item xs={12}>
+        <Grid container spacing={3} mb={3} columns={1}>
+          <Grid item xs={1}>
             <ProductsOfSupplierTable />
           </Grid>
         </Grid>

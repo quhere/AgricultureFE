@@ -183,7 +183,7 @@ export const orderColumns: GridColDef<OrderSellerData>[] = [
           queryClient.invalidateQueries({
             queryKey: ['ordersSeller'],
           });
-          toast.success(`Update Order ${params.row.id} successful!`);
+          toast.success(`Sending Order ${params.row.id} successful!`);
         },
       });
       const updateRejectOrderStatus = useMutation({
@@ -212,7 +212,7 @@ export const orderColumns: GridColDef<OrderSellerData>[] = [
           queryClient.invalidateQueries({
             queryKey: ['ordersSeller'],
           });
-          toast.success(`Reject Order ${params.row.id} successful!`);
+          toast.success(`Receive Order ${params.row.id} successful!`);
         },
       });
 

@@ -92,13 +92,17 @@ const handleApproveOrderStatus = async (orderId: number) =>
     return res.json();
   });
 
-export const orderColumns: GridColDef<OrderData>[] = [
+export const orderColumns: GridColDef<FlattenOrderData>[] = [
   {
     field: 'id',
     renderCell: (params) => {
       return <Typography sx={{ fontWeight: 500 }}>{params.value}</Typography>;
     },
     headerName: 'Order ID',
+    width: 100,
+  },{
+    field: 'productId',
+    headerName: 'Product ID',
     width: 100,
   },
   {
@@ -198,7 +202,7 @@ export const orderColumns: GridColDef<OrderData>[] = [
           queryClient.invalidateQueries({
             queryKey: ['orders'],
           });
-          toast.success(`Update Order ${params.row.id} successful!`);
+          toast.success(`Send Order ${params.row.id} successful!`);
         },
       });
       const updateRejectOrderStatus = useMutation({
@@ -207,7 +211,7 @@ export const orderColumns: GridColDef<OrderData>[] = [
           queryClient.invalidateQueries({
             queryKey: ['orders'],
           });
-          toast.success(`Approve Order ${params.row.id} successful!`);
+          toast.success(`Reject Order ${params.row.id} successful!`);
         },
       });
 
@@ -217,14 +221,14 @@ export const orderColumns: GridColDef<OrderData>[] = [
           queryClient.invalidateQueries({
             queryKey: ['orders'],
           });
-          toast.success(`Reject Order ${params.row.id} successful!`);
+          toast.success(`Receice Order ${params.row.id} successful!`);
         },
       });
 
       const handleSendingButton = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         const orderId = params.row.id;
-        const productId = params.row.product.productId;
+        const productId = params.row.productId;
         const distributorId = params.row.distributorId;
         const quantity = params.row.quantity;
         updateSendingOrderStatus.mutate({ orderId, productId, distributorId, quantity });

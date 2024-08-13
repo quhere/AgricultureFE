@@ -90,6 +90,48 @@ export default function UserProfileDialog({ open, onClose }: Props) {
             fullWidth
             variant="outlined"
           />
+          <TextField
+            value={user?.taxCode}
+            margin="dense"
+            id="taxCode"
+            name="taxCode"
+            label="Tax Code"
+            fullWidth
+            variant="outlined"
+          /><TextField
+            value={user?.establishment}
+            margin="dense"
+            id="establishment"
+            name="establishment"
+            label="Establishment"
+            fullWidth
+            variant="outlined"
+          /><TextField
+            value={user?.manager}
+            margin="dense"
+            id="manager"
+            name="manager"
+            label="Manager"
+            fullWidth
+            variant="outlined"
+          /><TextField
+            disabled
+            value={user?.activated}
+            margin="dense"
+            id="activated"
+            name="activated"
+            label="Activated"
+            fullWidth
+            variant="outlined"
+          /><TextField
+            value={user?.description}
+            margin="dense"
+            id="description"
+            name="description"
+            label="Description"
+            fullWidth
+            variant="outlined"
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Exit</Button>

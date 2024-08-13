@@ -50,6 +50,11 @@ export interface DistributorProfile {
   fax: string;
   status: boolean;
   avtUrl: string;
+  taxCode: string,
+  establishment: string,
+  manager: string,
+  activated: string,
+  description: string,
 }
 export interface SupplierProfile {
   supplierId: number;
@@ -77,6 +82,11 @@ export interface UserProfile {
   address: string;
   fax: string;
   status: boolean;
+  taxCode: string;
+  establishment: string;
+  manager: string;
+  activated: string;
+  description: string;
 }
 export interface OrderSellerData {
   id: number;
@@ -297,6 +307,11 @@ export interface FlattenedProductInWarehouseRoleSeller {
   distributorFax: string;
   distributorStatus: boolean;
   distributorAvtUrl: string;
+  distributorTaxCode: string;
+  distributorEstablishment: string;
+  distributorManager: string;
+  distributorActivated: string;
+  distributorDescription: string;
   supplierName: string;
   supplierEmail: string;
   supplierPhoneNumber: string;
@@ -356,6 +371,11 @@ export interface FlattenedItemAllProducstOfAllDistributorResponse {
   distributorFax: string;
   distributorStatus: boolean;
   distributorAvtUrl: string;
+  distributorTaxCode: string;
+  distributorEstablishment: string;
+  distributorManager: string;
+  distributorActivated: string;
+  distributorDescription: string;
   supplierName: string | null;
   supplierEmail: string | null;
   supplierPhoneNumber: string | null;
