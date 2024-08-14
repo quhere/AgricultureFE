@@ -39,7 +39,7 @@ const paths = {
   coupons: 'coupons',
   inbox: 'inbox',
   login: `${rootPaths.authRoot}/login`,
-  signup: 'signup',
+  signup: '/authentication/sign-up',
   forgotPassword: 'forgot-password',
   resetPassword: 'reset-password',
   notFound: '*',
